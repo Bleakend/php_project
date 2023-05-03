@@ -8,7 +8,7 @@ class Client{
     function __construct($firstName, $lastName){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->id = uniqid();
+        $this->id = uniqid();//create a unique id for each client
     }
 
 }
