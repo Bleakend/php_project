@@ -1,18 +1,21 @@
 <?php
 class Client{
-    public $lastName;
+    public $id;
     public $firstName;
+    public $lastName;
+    
 
-    function __construct($lastName, $firstName){
+    function __construct($firstName, $lastName){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->id = uniqid();
     }
 
 }
 
 class Car{
     public $id;
-    //id of client renting the car
+    //client id renting the car
     public $clientId;
     public $name;
     public $horsePower;
@@ -24,9 +27,8 @@ class Car{
     public $rentDate = null;
     public $rentDays = null;
 
-    public function __construct($id, $clientId, $name, $horsePower, $seatNumber, $price) {
+    public function __construct($id, $name, $horsePower, $seatNumber, $price) {
         $this->id = $id;
-        $this->clientId = $clientId;
         $this->name = $name;
         $this->horsePower = $horsePower;
         $this->seatNumber = $seatNumber;
@@ -47,8 +49,11 @@ class CarRent{
     function addCar($car){
         $this->carList[] = $car;
     }
-    function addClient($client){
+    function addClient($client){        
         $this->clientList[] = $client;
+    }
+    function deleteClientByIndex($index){
+        unset($this->clientList[$index]);
     }
 }
 ?>
