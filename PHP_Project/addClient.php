@@ -13,19 +13,17 @@
     
         if(isset($_POST['menu'])){
             header("location: main.php");
-
         }else if(isset($_POST['add'])){
 
             if(!empty($_POST['firstName']) && !empty($_POST['lastName'])){
                 $client = new Client($_POST['firstName'], $_POST['lastName']);
-                $carRentList->addClient($client);            
+                $carRentList->addClient($client);
+                header("location: addClient.php");      
             }            
             else{
-
                 $errorMessage = "Please fill all of the fields";
                 echo "<h1>".$errorMessage."</h1>";
             }
-            header("location: addClient.php");
         }
 
     ?>

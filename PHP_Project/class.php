@@ -8,7 +8,7 @@ class Client{
     function __construct($firstName, $lastName){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->id = uniqid();//create a unique id for each client
+        $this->id = uniqid();
     }
 
 }
@@ -34,6 +34,12 @@ class Car{
         $this->seatNumber = $seatNumber;
         $this->price = $price;
     }
+    function freeCar(){
+        $this->isRented = false;
+        $this->rentDate = null;
+        $this->rentDays = null;
+        $this->clientId = null;
+    }
 }
 
 class CarRent{
@@ -42,6 +48,15 @@ class CarRent{
 
     function getCarList(){
         return $this->carList;
+    }
+    function getFreeCarsList(){
+        $cars = Array();
+        foreach($this->carList as $value){
+            if($value->isRented == false){
+                $cars[] = $value;
+            }
+        }
+        return $cars;
     }
     function getClientList(){
         return $this->clientList;
@@ -53,7 +68,47 @@ class CarRent{
         $this->clientList[] = $client;
     }
     function deleteClientByIndex($index){
+        //implement a way to free all of the client cars when the client is deleted
+        $clientId = $this->clientList[$index]->id;
+        foreach($this->carList as $value){
+            if($value->clientId == $clientId){
+                $value->freeCar();
+            }
+        }
         unset($this->clientList[$index]);
+    }
+    function getCarById($carId){
+        foreach($this->carList as $value){
+            if($value->id == $carId){
+                return $value;
+            }
+        }
+    }
+    function getClientById($clientId){
+        foreach($this->clientList as $value){
+            if($value->id == $clientId){
+                return $value;
+            }
+        }
+    }
+    function assignCar($carId, $clientId, $days, $startingDate){
+        foreach($this->carList as $value){
+            if($value->id == $carId){
+                $value->clientId = $clientId;
+                $value->isRented = true;
+                $value->rentDays = $days;
+                $value->rentDate = $startingDate;
+            }
+        }
+    }
+    function getCarsByClientId($clientId){
+        $cars = Array();
+        foreach($this->carList as $value){
+            if($value->clientId == $clientId){
+                $cars[] = $value;
+            }
+        }
+        return $cars;
     }
 }
 ?>

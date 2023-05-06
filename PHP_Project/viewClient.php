@@ -20,7 +20,7 @@
     }else if(isset($_POST['displayCars'])){
         $clientId = $_POST['displayCars'];
 
-        echo $clientId;
+        header("location: viewCarByClient.php?clientId=".$clientId);
     }else if(isset($_POST["menu"])){
         header("location: main.php");
     }
