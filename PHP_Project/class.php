@@ -77,6 +77,9 @@ class CarRent{
         }
         unset($this->clientList[$index]);
     }
+    function deleteCarByIndex($index){
+        unset($this->carList[$index]);
+    }
     function getCarById($carId){
         foreach($this->carList as $value){
             if($value->id == $carId){
