@@ -38,7 +38,7 @@
         //creating search table
         echo "<form name='confirm' method='post' action='confirmRent.php'>";
         echo "<div class='search'><p><label class='search-label' for='client'>select a client:  </label>";
-        echo "<select class='search-select' id='client' required>";
+        echo "<select class='search-select' id='client' name='client' required>";
 
         foreach($clients as $_key=>$value){
             if($value->id == $_POST['client']){
