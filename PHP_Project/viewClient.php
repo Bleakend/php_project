@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/general.css">
     <title>Clients</title>
 </head>
 <body>
@@ -30,20 +32,21 @@
         echo "<h1>no clients registered!<h1>";        
     }else{
         echo "<table border>";
-        echo "<tr><th colspan='3'><h2>Client List:</h2></th></tr>";
+        echo "<tr><th id='mainheader' colspan='3'><h2>Client List:</h2></th></tr>";
         echo "<tr><th>name</th><th></th><th></th></tr>";
         foreach($clientList as $key=>$value){
             echo "<tr>";
             echo "<td>".$value->firstName." ".$value->lastName."</td>";
-            echo "<td><button type='submit' value='".$key."' name='deleteClient'>Delete</button></td>";
-            echo "<td><button type='submit' value='".$value->id."' name='displayCars'>View client`s cars</button></td>";
+            echo '<td><button type="submit" value="'.$key.'" name="deleteClient">Delete</button></td>';
+            echo '<td><button type="submit" value="'.$value->id.'" name="displayCars">View client`s cars</button></td>';
+
             echo "</tr>";
         }
         echo "</table>";
     }
 
     
-    echo "</br><button type='submit' name='menu'>Main Menu</button>";
+    echo "</br><button type='submit' name='menu' id='main-button'>Main Menu</button>";
     ?>
     </form>
 </body>

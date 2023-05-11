@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/addClient.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/container.css">
+    <link rel="stylesheet" href="css/general.css">
     <title>Add a Client</title>
 </head>
 <body>
@@ -22,25 +26,25 @@
             }            
             else{
                 $errorMessage = "Please fill all of the fields";
-                echo "<h1>".$errorMessage."</h1>";
+                echo "<h1 style='color:red;'>".$errorMessage."</h1>";
             }
         }
 
     ?>
     <form method='post' action='addClient.php'>
-
+<h1 id='header'>Add A Client</h1>
+    <div class='container'>
     <label for='first-name'>first name:</label>
     <input type='text' name='firstName' id='first-name' placeholder="eg:bilal">
-
-    </br></br>
 
     <label for='last-name'>last name:</label>
     <input type='text' name='lastName' id='first-name' placeholder="eg:edelbi">
 
-    </br></br>
-
+    </br></br><br/>
+    
+    <button type="submit" name="add">Add Client</button>
     <button type="submit" name="menu">Main Menu</button>
-    <button type="submit" name="add">add Client</button>
+    </div>
 
     </form>
 </body>

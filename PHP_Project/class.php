@@ -58,6 +58,14 @@ class CarRent{
         }
         return $cars;
     }
+	function getRentedCarsList(){
+	$carsrented = Array();
+	foreach($this->carList as $value){
+		if($value->isRented == true){
+			$carsrented[] = $value;
+		}
+	}
+	}
     function getClientList(){
         return $this->clientList;
     }

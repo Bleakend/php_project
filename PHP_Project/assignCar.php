@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/table.css">
     <title>assign car</title>
 </head>
 <body>
@@ -16,26 +19,26 @@
     $cars = $carRentList->getFreeCarsList();
     
     if(count($clients) > 0 && count($cars) > 0){
-        echo "<h1>assign cars to a client</h1>";
+        echo "<h1>Assign Cars To A Client</h1>";
 
         echo "<form name='search' method='post' action='assignCar.php'>";
         
-
-
-        echo "<p><label for='car'>select a car by name:  </label>";
+        echo "<fieldset>";
+        echo "<legend>Search</legend>";
+        echo "<div class='search'>";
+        echo "<p><label class='search-label' for='car'>select a car by name:  </label>";
         if(isset($_POST['car'])){
-            echo "<input type='text' name='car' size=10 palceholder = 'eg:Mazda' value='".$_POST['car']."'> ";
+            echo "<input class='search-input' type='text' name='car' size=10 palceholder = 'eg:Mazda' value='".$_POST['car']."'> ";
         }else{
-            echo "<input type='text' name='car' size=10 palceholder = 'eg:Mazda'>";
+            echo "<input class='search-input' type='text' name='car' size=10 palceholder = 'eg:Mazda'>";
         }
-        echo " <button type='submit' name='search'>Search</button></p></form>";
+        echo " <button class='search-button' type='submit' name='search'>Search</button></p></div></form>";
 
 
         //creating search table
         echo "<form name='confirm' method='post' action='confirmRent.php'>";
-
-        echo "<label for='client'>select a client:  </label>";
-        echo "<select name='client' id='client'> required";
+        echo "<div class='search'><p><label class='search-label' for='client'>select a client:  </label>";
+        echo "<select class='search-select' id='client' required>";
 
         foreach($clients as $_key=>$value){
             if($value->id == $_POST['client']){
@@ -44,8 +47,8 @@
                 echo "<option value='".$value->id."'>".$value->firstName." ".$value->lastName."</option>";
             }
             
-        }echo "</select> </br></br>";
-
+        }echo "</select></p>";
+        echo "</fieldset></div></br></br>";
         echo "<table border>";
         echo "<tr><th>id</th><th>name</th><th>horse-power</th><th>seats number</th><th>Select-Car</th></tr>";
 
@@ -61,13 +64,13 @@
         echo "</table><br>";
     }else{
         echo "<form action='main.php'>";
-        echo "<h2>you need to have at least a single client and a single free car to use this page</h2>";
+        echo "<h2 style='color:red;'>you need to have at least a single client and a single free car to use this page</h2>";
     }
     
     
-    echo "<button type='submit' name='main'>Main menu</button>";
+    echo "<button id='main-button' type='submit' name='main'>Main menu</button>";
     if(!count($cars) == 0 && !count($clients) == 0){
-        echo "<button type='submit' name='assign'>Assign</button>";
+        echo "<button id='main-button' type='submit' name='assign'>Assign</button>";
     }
     
     echo "</form>";
